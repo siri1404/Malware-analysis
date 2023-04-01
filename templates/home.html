@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload PE file</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <main id="main" tabIndex="-1">
+        <section id = "aubout">
+        <div class="container">
+            <h2>Upload a PE file</h2>
+            <br></br>
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" value="Generate Report">
+            </form>
+        </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Malware Analaysis report</title>
+    <meta name="description" content="[Your optional description]" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+      .containers {
+        width: 50%;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link"></a>
+    <header>
+      <div class="container">
+        <h2>A Static malware analysis tool for PE files</h2>
+        <a href="https://github.com/siri1404/Malware-analysis.git" class="link-github"
+          ><span
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"
+              ></path>
+            </svg>
+          </span>
+          Star on Github</a
+        >
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#about">General</a></li>
+        <li><a href="#headers">Headers</a></li>
+        <li><a href="#imports">Imports</a></li>
+        <li><a href="#Network">Network</a></li>
+        <li><a href="#Network">Connections</a></li>
+      </ul>
+    </nav>
+
+    <main id="main" tabIndex="-1">
+      <div class="container">
+        <article id="about">
+          <section class="container">
+            <h3>General Info</h3>
+              <a><strong>File name:</strong> {{ filename }}</a>
+              <a><strong><b>OS:</b></strong> {{ os }}</a>
+              <a><strong><b>MIME type:</b></strong> {{ mime }}</a>
+	            <a><strong><b>File size:</b></strong> {{ size }}</a>
+	            <a><strong><b>Timestamp:</b> </strong>{{ timestamp }}</a>
+	            <a><strong><b>MD5 hash:</b></strong> {{ md5 }}</a>
+	            <a><strong><b>SHA1 hash:</b></strong> {{ sha1 }}</a>
+	            <a><strong><b>SHA256 hash:</b></strong>{{ sha256 }}</a>
+              <a><strong><b>Architecture:</b></strong>{{ architecture }}</a>
+              <a><strong><b>Subsystem:</b></strong>{{ subsystem }}</a>
+              <a><strong><b>Compilation Date:</b></strong>{{ compilation_date}}</a>
+          </section>
+          <section class="container">
+            <h2>TRiD and EXIF info</h2>
+            <a><strong>MIME type:</strong> {{ mime_type }}</a>
+            <a><strong>TRiD information:</strong>{{ trid_info }}</a>
+            <ul>
+              <li><b>File type:</b> {{ File_type }}</li>
+              <li><b>Object file type:</b> {{ Object_file_type }}</li>
+              <li><b>File OS:</b> {{ File_OS}}</li>
+              <li><b>File flags:</b> {{ File_flags }}</li>
+              <li><b>File flags mask:</b> {{File_flags_mask }}</li>
+              <li><b>Subsystem:</b> {{ Subsystem}}</li>
+              <li><b>Subsystem version:</b> {{ Subsystem_version }}</li>
+              <li><b>Image version:</b> {{ Image_version }}</li>
+              <li><b>OS version:</b> {{ OS_version }}</li>
+              <li><b>Entry point:</b> {{ Entry_point }}</li>
+              <li><b>Uninitialized data size:</b> {{ Uninitialized_data_size }}</li>
+              <li><b>Initialized data size:</b> {{Initialized_data_size }}</li>
+              <li><b>Code size:</b>{{ Code_size }}</li>
+              <li><b>Linker version:</b>{{Linker_version}}</li>
+              <li><b>PE type:</b>{{PE_type}}</li>
+              <li><b>Time stamp:</b>{{Time_stamp}}</li>
+              <li><b>Machine type:</b>{{Machine_type}}</li>
+            </ul>
+          </section>
+        </article>
+        <article id="headers">
+          <section class="container">
+            <h2>DOS headers</h2>
+            <ul>
+              <li><b>Magic number:</b> {{ Magic_number }}</li>
+              <li><b>Bytes on last page of file:</b>{{ Bytes_on_last_page_of_file }}</li>
+              <li><b>Pages_in_file:</b>{{ Pages_in_file }}</li>
+              <li><b>Relocations:</b>{{ Relocations }}</li>
+              <li><b>Size_of_header:</b>{{ Size_of_header }}</li>
+              <li><b>Min_extra_paragraphs:</b>{{ Min_extra_paragraphs }}</li>
+              <li><b>Max_extra_paragraphs:</b>{{ Max_extra_paragraphs }}</li>
+              <li><b>Initial_SS_value:</b>{{ Initial_SS_value }}</li>
+              <li><b>Initial_SP_value:</b>{{ Initial_SP_value }}</li>
+              <li><b>Checksum:</b>{{ Checksum }}</li>
+              <li><b>Initial_IP_value:</b>{{ Initial_IP_value }}</li>
+              <li><b>Initial_CS_value:</b>{{Initial_CS_value  }}</li>
+              <li><b>printOverlay_number:</b>{{ printOverlay_number }}</li>
+              <li><b>printOEM_identifier:</b>{{ printOEM_identifier }}</li>
+              <li><b>OEM_information:</b>{{ OEM_information }}</li>
+              <li><b>Address_of_NE_header:</b>{{ Address_of_NE_header }}</li>
+            <br>
+            <h2>PE headers</h2>
+            <ul>
+              <li><b>Signature:</b> {{ signature }}</li>
+              <li><b>Machine:</b>{{ machine }}</li>
+              <li><b>Num sections:</b>{{ num_sections }}</li>
+              <li><b>Relocations:</b>{{ Relocations }}</li>
+              <li><b>Time date stamp:</b>{{ time_date_stamp }}</li>
+              <li><b>Pointer to symbol table:</b>{{ pointer_to_symbol_table }}</li>
+              <li><b>Num symbols:</b>{{ num_symbols }}</li>
+              <li><b>Size of optional header:</b>{{ size_of_optional_header }}</li>
+              <li><b>Characteristics:</b>{{ characteristics }}</li>
+          </section>
+        </article>
+        <article id = "imports">
+          <section class="container">
+            <h2>Sections</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Virtual Address</th>
+                  <th>Virtual Size</th>
+                  <th>Raw Size</th>
+                  <th>Characteristics</th>
+                  <th>Entropy</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in table_data %}
+                <tr>
+                  <td>{{ row.name }}</td>
+                  <td>{{ row.virtual_address }}</td>
+                  <td>{{ row.virtual_size }}</td>
+                  <td>{{ row.raw_size }}</td>
+                  <td>{{ row.characteristics }}</td>
+                  <td>{{ row.entropy }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <br></br>
+            <h3>Imports and files</h3>
+            <a><strong>Total imports:</strong> {{ total_imports }}</a>
+            <a><strong><b>Monitored imports:</b></strong> {{ monitored_imports }}</a>
+            <a><strong><b>Malicious imports:</b></strong> {{ malicious_imports }}</a>
+            <a><strong>Executable files:</strong> {{ exe_count }}</a>
+            <a><strong><b>Suspicious files:</b></strong> {{ susp_count }}</a>
+            <a><strong><b>Text files:</b></strong> {{ text_count }}</a>
+          </section>
+        </article>
+        <article id = "Network">
+          <section class="container">
+            <h3>Connections</h3>
+            <p>Number of HTTP(S) Requests: {{ http_requests }}</p>
+	          <p>Number of TCP Connections: {{ tcp_connections }}</p>
+	          <p>Number of UDP Connections: {{ udp_connections }}</p>
+	          <p>Number of DNS Requests: {{ dns_requests }}</p>
+            <br>
+            
+            <h3>TCP Connections</h3>
+            <table>
+            <thead>
+              <tr>
+                <th>PID</th>
+                <th>Process</th>
+                <th>IP</th>
+                <th>Domain</th>
+                <th>ASN</th>
+                <th>CN</th>
+                <th>Reputation</th>
+              </tr>
+            </thead>
+              <tbody>
+                {% for conn, info in tcp_connection.items() %}
+                <tr>
+                  <td>{{ info.pid }}</td>
+                  <td>{{ info.process }}</td>
+                  <td>{{ info.ip }}</td>
+                  <td>{{ info.domain }}</td>
+                  <td>{{ info.asn }}</td>
+                  <td>{{ info.cn }}</td>
+                  <td>{{ info.reputation }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <h3>DNS Requests</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th>IP Address</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for dns_request in dns_request %}
+                <tr>
+                    <td>{{ dns_request["domain"] }}</td>
+                    <td>{{ dns_request["ip"] }}</td>
+                </tr>
+             {% endfor %}
+              </tbody>
+           </table>
+
+           <h3>Process Information</h3>
+           <table>
+               <thead>
+                   <tr>
+                       <th>PID</th>
+                       <th>Process Name</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   {% for process in process_info %}
+                   <tr>
+                       <td>{{ process["pid"] }}</td>
+                       <td>{{ process["process"] }}</td>
+                   </tr>
+                   {% endfor %}
+               </tbody>
+           </table>
+          </section>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
